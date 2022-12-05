@@ -1,0 +1,28 @@
+.login-form {
+  margin: 10% 20%;
+  border-radius: 20px;
+}
+.form-brand {
+  background-color: rgb(34, 82, 172);
+  color: #fff;
+  padding: 15% 3%;
+  border-radius: 20px;
+}
+.signIn-btn {
+  background-color: rgb(34, 82, 172);
+  width: 5rem;
+  height: 2.7rem;
+  font-size: large;
+  font-weight: bold;
+}
+.signIn-btn:hover {
+  background-color: #fff;
+  color: rgb(34, 82, 172);
+  border: 1px solid rgb(34, 82, 172);
+}
+
+@media screen and (max-width: 660px) {
+  .login-form {
+    margin: 20% 5%;
+  }
+}

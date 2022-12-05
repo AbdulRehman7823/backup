@@ -1,0 +1,10 @@
+.header{
+    background-image: url(https://images.unsplash.com/photo-1512448701791-effdc6b291e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwxMjkxOTg5fHxlbnwwfHx8fA%3D%3D&w=1000&q=80);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    text-align: center !important;
+    align-items: center !important;
+    padding-top:15rem ;
+}

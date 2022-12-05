@@ -1,0 +1,7 @@
+.main-bg{
+    background-image: url(https://images.unsplash.com/photo-1510554180669-1a8160286cc9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NXwxMjkxOTg5fHxlbnwwfHx8fA%3D%3D&w=1000&q=80);
+    backdrop-filter: blur(1px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.10);
+}
+.main-bg-top{
+}
