@@ -4,7 +4,7 @@ import {FcGoogle} from 'react-icons/fc';
 import {GoMarkGithub} from 'react-icons/go'
 import {FaKickstarter} from 'react-icons/fa'
 import authServices from "../../Services/AuthServices";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import alert from "../../Services/Alert";
 
 
@@ -108,18 +108,18 @@ function Login() {
           </form>
 
           <hr className="my-6 border-gray-300 w-full" />
-
          
-         
-
           <p className="mt-8">
             Need an account?
+            <Link to="/register">
             <a 
                 
                 className="text-blue-500 hover:text-blue-700 font-semibold">
               Create an account
             </a>
+            </Link>
           </p>
+         
 
           <p className="text-sm text-gray-500 mt-4">
             &copy; 2022 Poet Prime - All Rights Reserved.
