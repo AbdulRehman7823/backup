@@ -1,22 +1,27 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import FrontPage from './components/Pages/FrontPage'
-import LoginPage from './components/Pages/LoginPage';
-import SignupPage from './components/Pages/SignupPage';
-import ContactPage from './components/Pages/ContactPage';
-import SellerHomePage from './components/Pages/SellerPages/SellerHomePage';
-import SellerAddComponentPage from './components/Pages/SellerPages/SellerAddComponentPage';
-import SellerDeleteComponentPage from './components/Pages/SellerPages/SellerDeleteComponentPage';
-import SellerSubscriberPage from './components/Pages/SellerPages/SellerSubscriberPage';
-import SellerRequestPages from './components/Pages/SellerPages/SellerRequestPages';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
+import FrontPage from "./components/Pages/FrontPage";
+import LoginPage from "./components/Pages/LoginPage";
+import SignupPage from "./components/Pages/SignupPage";
+import ContactPage from "./components/Pages/ContactPage";
+import SellerHomePage from "./components/Pages/SellerPages/SellerHomePage";
+import SellerAddComponentPage from "./components/Pages/SellerPages/SellerAddComponentPage";
+import SellerDeleteComponentPage from "./components/Pages/SellerPages/SellerDeleteComponentPage";
+import SellerSubscriberPage from "./components/Pages/SellerPages/SellerSubscriberPage";
+import SellerRequestPages from "./components/Pages/SellerPages/SellerRequestPages";
 import PoetCardList from "./components/PoetCard/PoetCardList";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PoetryList from "./components/Poetries/PoetryList";
 import PoetPoetryList from "./components/PoetCard/PoetPoetryList";
 import BuySubscription from "./components/PoetCard/BuySubscription";
-import Navbar from './components/FrontPageComponents/Navbar/Navbar'
-import Footer from './components/FrontPageComponents/Footer/Footer';
+import Navbar from "./components/FrontPageComponents/Navbar/Navbar";
+import Footer from "./components/FrontPageComponents/Footer/Footer";
 import SellerProfilePage from "./components/Pages/SellerPages/SellerProfilePage";
 
 function App() {
