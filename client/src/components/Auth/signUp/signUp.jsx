@@ -66,6 +66,7 @@ function SignUp() {
         alert.showErrorAlert(err);
       });
   };
+
   return (
     <section className=" flex flex-col md:flex-row mt-28 items-center ">
       <div
