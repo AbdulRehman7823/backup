@@ -28,7 +28,7 @@ function Navbar() {
               >
                 Logout
               </button>
-              <h2 className="text-2xl text-blue-700">
+              <h2 className="text-2xl font-medium text-blue-700 inline mx-4">
                 Hi! {AuthServices.getLoggedInUser().username}
               </h2>
             </div>
@@ -93,7 +93,7 @@ function Navbar() {
               </Link>
             </li>
             <li>
-              <Link  to="/poetries">
+              <Link to="/poetries">
                 <a
                   href="#"
                   class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"

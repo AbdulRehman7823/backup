@@ -6,6 +6,7 @@ class AuthServices extends GenericService {
   }
 
   registerUser = (data) => this.post("auth/register/", data);
+  googleAuth = (data) => this.post("auth/google", data);
   login = (data) =>
     new Promise((resolve, reject) => {
       this.post("auth/login/", data)

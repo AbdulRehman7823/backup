@@ -6,14 +6,13 @@ const userSchema = mongoose.Schema(
     email: { type: String, required: true },
     userType: { type: String, required: true },
     password: { type: String, required: true },
+    fee: { type: Number },
     phone: { type: String },
     city: { type: String },
     img: { type: String },
     isAdmin: { type: Boolean },
     poetType: { type: String },
-    poets:[
-      {poetId: { type: String}}
-    ],
+    poets: [{ poetId: { type: String } }],
 
     requests: [
       {

@@ -14,6 +14,7 @@ import {GiProgression} from "react-icons/gi"
 import { useNavigate } from "react-router-dom";
 import { GoRequestChanges } from "react-icons/go"
 import { MdUnsubscribe } from "react-icons/md";
+import { CgProfile } from "react-icons/cg";
 
 import "./style.css";
 
@@ -21,7 +22,6 @@ import SellerTopNavigation from "./SellerTopNavigation";
 function SellerNavigation({ children }) {
   const [open, setOpen] = React.useState(true);
   const navigate = useNavigate();
-
 
   const handler = (str) => {
     console.log(str);
@@ -55,19 +55,21 @@ function SellerNavigation({ children }) {
       icon: <GoRequestChanges />,
     },
     {
-        title: "Help?",
-        link: "/contactus",
-        icon: <MdHelpCenter />,
-        
-      },
+      title: "Profile",
+      link: "/app/seller/profile",
+      icon: <CgProfile />,
+    },
+    {
+      title: "Help?",
+      link: "/contactus",
+      icon: <MdHelpCenter />,
+    },
     {
       title: "Logout",
       link: "/",
       icon: <RiLogoutBoxFill />,
-      spacing:true,
-
+      spacing: true,
     },
-    
   ];
   return (
     <div className="flex md:flex h-screen ">
@@ -90,9 +92,9 @@ function SellerNavigation({ children }) {
           {Menus.map((menu, index) => (
             <div key={index}>
               <li
-                 onClick={() => {
-                    navigate(menu.link);
-                  }}
+                onClick={() => {
+                  navigate(menu.link);
+                }}
                 key={index}
                 className={`text-gray-700 text-md flex items-center gap-x-4 cursor-pointer p-2 hover:shadow-lg duration-200 hover:bg-gray-500 hover:text-gray-100 rounded-md  ${
                   menu.spacing ? "mt-44" : "mt-6"
@@ -120,7 +122,7 @@ function SellerNavigation({ children }) {
       <div className="h-screen overflow-y-auto w-full bg-white">
         <SellerTopNavigation></SellerTopNavigation>
         {children}
-        </div>
+      </div>
     </div>
   );
 }

@@ -17,12 +17,12 @@ import PoetPoetryList from "./components/PoetCard/PoetPoetryList";
 import BuySubscription from "./components/PoetCard/BuySubscription";
 import Navbar from './components/FrontPageComponents/Navbar/Navbar'
 import Footer from './components/FrontPageComponents/Footer/Footer';
-
+import SellerProfilePage from "./components/Pages/SellerPages/SellerProfilePage";
 
 function App() {
   return (
     <Router>
-            <Navbar></Navbar>
+      <Navbar></Navbar>
 
       <ToastContainer
         autoClose={1000}
@@ -30,23 +30,30 @@ function App() {
         pauseOnFocusLoss={false}
       />
       <Routes>
-        <Route path="/" element={<FrontPage></FrontPage>}/>
-        <Route path="/login" element={<LoginPage/>}/>
-        <Route path="/register" element = {<SignupPage></SignupPage>}/>
-        <Route path="/contactus" element = {<ContactPage/>}/>
-        <Route path="/app/seller/home" element={<SellerHomePage/>}/>
-         <Route path="/app/seller/add" element={<SellerAddComponentPage/>}/>
-         <Route path="/app/seller/delete" element={<SellerDeleteComponentPage/>}/>
-         <Route path="/app/seller/requests" element={<SellerRequestPages/>}/>
-         <Route path="/app/seller/subscribers" element={<SellerSubscriberPage/>}/>
+        <Route path="/" element={<FrontPage></FrontPage>} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<SignupPage></SignupPage>} />
+        <Route path="/contactus" element={<ContactPage />} />
+        <Route path="/app/seller/home" element={<SellerHomePage />} />
+        <Route path="/app/seller/add" element={<SellerAddComponentPage />} />
+        <Route
+          path="/app/seller/delete"
+          element={<SellerDeleteComponentPage />}
+        />
+        <Route path="/app/seller/requests" element={<SellerRequestPages />} />
+        <Route
+          path="/app/seller/subscribers"
+          element={<SellerSubscriberPage />}
+        />
+        <Route path="/app/seller/profile" element={<SellerProfilePage />} />
 
-         <Route path="/poets" element={<PoetCardList />} />
+        <Route path="/poets" element={<PoetCardList />} />
         <Route path="/poetries" element={<PoetryList />} />
         <Route path="/poet/poetries" element={<PoetPoetryList />} />
         <Route path="/poet/buysubscription" element={<BuySubscription />} />
       </Routes>
       <Footer></Footer>
     </Router>
-  )
+  );
 }
 export default App
