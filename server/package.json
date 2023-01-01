@@ -21,6 +21,9 @@
     "mongoose": "^6.3.0",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.15",
+    "passport": "^0.6.0",
+    "passport-google-oauth2": "^0.2.0",
+    "react-transliterate": "^1.1.9",
     "socket.io": "^4.5.0",
     "stripe": "^8.219.0"
   }

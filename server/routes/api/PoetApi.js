@@ -1,16 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const { verifyToken } = require("../../middlewares/authenticate");
+const CryptoJS = require("crypto-js");
 const User = require("../../models/User");
 const Product = require("../../models/Product");
-
-
 
 router.get("/readers/:id", async (req, res) => {
   try {
     console.log(req.params.id);
     const poet = await User.findById(req.params.id);
-  
+
     if (poet && poet.userType == "poet") {
       const readers = poet.poetCustomers;
       console.log(readers);
@@ -26,9 +25,8 @@ router.get("/readers/:id", async (req, res) => {
     console.log(err);
     res.status(500).send({ message: "There is some Error " + err.message });
   }
-});+
-
-router.get("/acceptedReaders/:id", verifyToken, async (req, res) => {
+});
++router.get("/acceptedReaders/:id", verifyToken, async (req, res) => {
   try {
     const poet = await User.findById(req.params.id);
     if (poet && poet.userType == "poet") {
@@ -40,9 +38,7 @@ router.get("/acceptedReaders/:id", verifyToken, async (req, res) => {
         console.log(records);
         res.status(200).send(records);
       } else {
-        res
-          .status(200)
-          .send([]);
+        res.status(200).send([]);
       }
     } else {
       res.status(422).send({ message: "There  is no poet with this ID" });
@@ -100,6 +96,10 @@ router.get("/:id", verifyToken, async (req, res) => {
   try {
     const poet = await User.findById(req.params.id);
     if (poet) {
+      poet.password = CryptoJS.AES.decrypt(
+        poet.password,
+        process.env.PASS_SEC
+      ).toString(CryptoJS.enc.Utf8);
       res.status(200).send(poet);
     } else {
       res.status(422).send({ message: "There  is no poet with this ID." });
@@ -109,8 +109,24 @@ router.get("/:id", verifyToken, async (req, res) => {
   }
 });
 
-//get all poet Poetries
-
+router.put("/:id", async (req, res) => {
+  try {
+    const poet = await User.findById(req.params.id);
+    if (poet) {
+      (req.body.password = CryptoJS.AES.encrypt(
+        req.body.password,
+        process.env.PASS_SEC
+      ).toString()),
+        Object.assign(poet, req.body);
+      poet.save();
+      res.status(200).send(poet);
+    } else {
+      res.status(422).send({ message: "There  is no poet with this ID." });
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
 router.get("/poetries/:id",async(req, res)=>{
     const poetId = req.params.id;
     const poetries = await Product.find({poetId: poetId});

@@ -2,14 +2,17 @@ import Dropzone from "react-dropzone";
 import React from "react";
 const FileUploader = ({ placeholder, image, ...props }) => {
   return (
-    <div className="form-group mb-3">
+    <div
+      className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
+                  focus:bg-white focus:outline-none"
+    >
       <div className="form-control imageupload">
         <Dropzone {...props}>
           {({ getRootProps, getInputProps }) => (
             <section>
               <div {...getRootProps()}>
                 <input {...getInputProps()} />
-                <div className="imageicon d-flex justify-content-between">
+                <div className="imageicon flex justify-between cursor-pointer">
                   <p className="imagetext m-0">{placeholder}</p>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
