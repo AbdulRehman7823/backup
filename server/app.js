@@ -19,6 +19,7 @@ const User = require("./models/User");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 var http = require("http");
+const passwordResetRoutes = require("./routes/api/PasswordReset")
 const { Server } = require("socket.io");
 var app = express();
 app.use(cors({ origin: true, credentials: true }));
@@ -61,6 +62,7 @@ app.use("/api/reader", readerRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/checkout", paymentRouter);
 app.use("/api/chat", chatRouter);
+app.use('/api/password-reset',passwordResetRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

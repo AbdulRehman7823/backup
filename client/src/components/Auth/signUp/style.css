@@ -1,7 +1,24 @@
 .main-bg{
-    background-image: url(https://images.unsplash.com/photo-1510554180669-1a8160286cc9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NXwxMjkxOTg5fHxlbnwwfHx8fA%3D%3D&w=1000&q=80);
+    background-image: url(https://images5.alphacoders.com/866/866816.jpg);
     backdrop-filter: blur(1px);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.10);
+    background-repeat: no-repeat;
+    background-size:cover;
 }
 .main-bg-top{
+}
+.error_msg,
+.success_msg {
+	width: 370px;
+	padding: 15px;
+	margin: 5px 0;
+	font-size: 14px;
+	background-color: #f34646;
+	color: white;
+	border-radius: 5px;
+	text-align: center;
+}
+
+.success_msg {
+	background-color: #5cdd5c;
 }

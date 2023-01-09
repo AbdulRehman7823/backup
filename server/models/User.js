@@ -13,7 +13,7 @@ const userSchema = mongoose.Schema(
     isAdmin: { type: Boolean },
     poetType: { type: String },
     poets: [{ poetId: { type: String } }],
-
+    verified: { type: Boolean,default: false },
     requests: [
       {
         readerId: { type: String },

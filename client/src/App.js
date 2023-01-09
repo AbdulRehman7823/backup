@@ -18,11 +18,10 @@ import BuySubscription from "./components/PoetCard/BuySubscription";
 import Navbar from './components/FrontPageComponents/Navbar/Navbar'
 import Footer from './components/FrontPageComponents/Footer/Footer';
 import SellerProfilePage from "./components/Pages/SellerPages/SellerProfilePage";
-
+import EmailVerify from './components/EmailVerify';
 function App() {
   return (
     <Router>
-      <Navbar></Navbar>
 
       <ToastContainer
         autoClose={1000}
@@ -30,9 +29,11 @@ function App() {
         pauseOnFocusLoss={false}
       />
       <Routes>
+      <Route path="/users/:id/verify/:token" element={<EmailVerify />} />
         <Route path="/" element={<FrontPage></FrontPage>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<SignupPage></SignupPage>} />
+       
         <Route path="/contactus" element={<ContactPage />} />
         <Route path="/app/seller/home" element={<SellerHomePage />} />
         <Route path="/app/seller/add" element={<SellerAddComponentPage />} />
