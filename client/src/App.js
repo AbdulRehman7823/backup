@@ -52,7 +52,7 @@ function App() {
         <Route path="/poet/poetries" element={<PoetPoetryList />} />
         <Route path="/poet/buysubscription" element={<BuySubscription />} />
       </Routes>
-      <Footer></Footer>
+     
     </Router>
   );
 }

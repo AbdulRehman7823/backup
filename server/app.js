@@ -25,30 +25,6 @@ app.use(cors({ origin: true, credentials: true }));
 
 var server = http.createServer(app);
 
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-  },
-});
-
-io.on("connection", (socket) => {
-  console.log(`User Connected: ${socket.id}`);
-
-  socket.on("join_room", (data) => {
-    socket.join(data);
-    console.log(`User with ID: ${socket.id} joined room: ${data}`);
-  });
-
-  socket.on("send_message", async (data) => {
-    console.log("sending....");
-    socket.to(data.room).emit("receive_message", data);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("User Disconnected", socket.id);
-  });
-});
-
 var port = "3000";
 /**
  * Create HTTP server.
@@ -68,25 +44,6 @@ dotenv.config();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
-app.use(passport.initialize());
-passport.use(
-  "google",
-  new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:4000/api/auth/google/callback",
-      passReqToCallback: true,
-    },
-    (request, accessToken, refreshToken, profile, done) => {
-      try {
-        done(false, profile);
-      } catch (err) {
-        done(err, false);
-      }
-    }
-  )
-);
 
 app.use(logger("dev"));
 app.use("/api/checkout/webhook", express.raw({ type: "*/*" }));
@@ -105,7 +62,6 @@ app.use("/api/order", orderRouter);
 app.use("/api/checkout", paymentRouter);
 app.use("/api/chat", chatRouter);
 
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -122,9 +78,6 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-mongoose.connect(process.env.DB_Connect, () => {
-  console.log("Connected");
-});
 function normalizePort(val) {
   var port = parseInt(val, 10);
 
@@ -176,4 +129,25 @@ function onListening() {
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
 }
+
+
+
+
+const connectDB = async () => {
+  try {
+    console.log("Attempting to connect to MongoDB...");
+    await mongoose.connect(process.env.DB_Connect, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("MongoDB connected...");
+  } catch (err) {
+    console.log(err.message);
+    process.exit(1); // Exit process with failure
+  }
+};
+
+mongoose.set("strictQuery", true);
+connectDB();
+
 module.exports = app;
