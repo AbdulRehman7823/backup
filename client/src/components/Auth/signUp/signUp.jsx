@@ -8,7 +8,7 @@ import alert from "../../Services/Alert";
 import convertImageToBase64 from "../../ImageBase64";
 import { uploadImage } from "../../ImageUpload";
 import FileUploader from "../../FileUploader";
-import HashLoader from "react-spinners/HashLoader";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 function SignUp() {
 
@@ -50,17 +50,20 @@ function SignUp() {
         .then((data) => {
           alert.showSuccessAlert("The user registered successfully!");
           setLoading(false);
+          setError("");
           setMsg(data.message);
         })
         .catch((err) => {
+          setLoading(false);
+          console.log(err);
           if (
-            error.response &&
-            error.response.status >= 400 &&
-            error.response.status <= 500
+            err.response &&
+            err.response.status >= 400 &&
+            err.response.status <= 500
           ) {
             setError(err.response.data.message);
             alert.showErrorAlert(err.response.data.message);
-            setLoading(false);
+            
           }
                  });
     }
@@ -111,7 +114,7 @@ function SignUp() {
           style={{ textAlign: "center" }}
           className="main-bg flex justify-center w-full bg-gray-300 h-screen mx-auto py-32"
         >
-          <HashLoader color="#2d38cf" size="150" />
+           <ScaleLoader color="#3d49fc" size="150"  />
         </div>
       ) : (
         <section className="main-bg px-64 py-4  flex justify-center  h-screen items-center">
@@ -223,6 +226,8 @@ function SignUp() {
                   >
                     Sign In
                   </button>
+                  {error && <div className="error_msg">{error}</div>}
+					{msg && <div className="success_msg">{msg}</div>}
                 </div>
                 <div></div>
                 <div className="flex flex-col justify-around">
@@ -279,17 +284,18 @@ function SignUp() {
                   </div>
                  
                 </div>
+                
               </form>
+             
               <a
-            href="http://localhost:4000/api/auth/googleAuth/?userType=reader"
+            href="http://localhost:4000/api/auth/google/callback"
             className="w-full block border text-center bg-gray-200 hover:bg-gray-300 focus:bg-blue-400  font-semibold rounded-lg
                 px-4 py-2 mt-6"
           >
             <FcGoogle size={30} className="inline" />
             <span> Sign In with google</span>
           </a>
-          {error && <div className="error_msg">{error}</div>}
-					{msg && <div className="success_msg">{msg}</div>}
+         
               <hr className="border-gray-300 w-full mt-4" />
 
               <p className="mt-2">

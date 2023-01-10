@@ -67,9 +67,9 @@ function Login() {
         })
         .catch((err) => {
           if (
-            error.response &&
-            error.response.status >= 400 &&
-            error.response.status <= 500
+            err.response &&
+            err.response.status >= 400 &&
+            err.response.status <= 500
           ) {
             setError(err.response.data.message);
             alert.showErrorAlert(err.response.data.message);
@@ -78,6 +78,11 @@ function Login() {
         });
     }
   };
+
+
+  const loginWithGoogle = ()=>{
+    
+  }
   return (
     <div>
       {loading ? (
@@ -85,7 +90,7 @@ function Login() {
           style={{ textAlign: "center" }}
           className="main-bg flex justify-center w-full bg-gray-300 h-screen mx-auto py-32"
         >
-         <ScaleLoader color="#2f50e6" />
+         <ScaleLoader color="#3d49fc" size="150"  />
         </div>
       ) : (
         <section className="main-bg flex justify-center  h-screen items-center">
@@ -95,9 +100,9 @@ function Login() {
           >
             <div className="w-full h-100">
               <div className="inline-flex items-center mt-4">
-                <FaKickstarter className="mr-4 text-3xl block text-blue-700" />
-                <h1 className="text-xl text-skin-base font-bold">
-                  Career Span
+              <img src="/logo.png" alt="img" />
+                <h1 className="text-xl text-skin-base font-bold pl-2">
+                  Poet Prime
                 </h1>
               </div>
               <h1 className="text-xl md:text-2xl font-bold leading-tight text-skin-base mt-6">
@@ -156,7 +161,7 @@ function Login() {
                 </div>
 
                 <div className="text-right mt-2">
-                  <a className="text-sm font-semibold text-skin-base hover:text-blue-700 focus:text-blue-700">
+                  <a onClick={()=>{navigate("/forgot-password")}}className="text-sm font-semibold text-skin-base hover:text-blue-700 focus:text-blue-700">
                     Forgot Password?
                   </a>
                 </div>
@@ -170,6 +175,14 @@ function Login() {
                 </button>
               </form>
 
+              <a
+            onClick={loginWithGoogle}
+            className="w-full block border text-center bg-gray-200 hover:bg-gray-300 focus:bg-blue-400  font-semibold rounded-lg
+                px-4 py-2 mt-6"
+          >
+            <FcGoogle size={30} className="inline" />
+            <span> Log In with google</span>
+          </a>
               <hr className="my-6 border-gray-300 w-full" />
 
               <p className="mt-8">
@@ -182,7 +195,7 @@ function Login() {
               </p>
 
               <p className="text-sm text-gray-500 mt-4">
-                &copy; 2022 CareerSpan - All Rights Reserved.
+                &copy; 2022 Poet-Prime - All Rights Reserved.
               </p>
             </div>
           </div>

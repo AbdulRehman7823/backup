@@ -8,10 +8,9 @@
 .main-bg-top{
 }
 .error_msg,
-.success_msg {
-	width: 370px;
+.success_msg {width: 100%;
 	padding: 15px;
-	margin: 5px 0;
+	margin: 5px;
 	font-size: 14px;
 	background-color: #f34646;
 	color: white;

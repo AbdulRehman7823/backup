@@ -10,8 +10,8 @@ function Navbar() {
     <nav class="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
       <div class="container flex flex-wrap items-center justify-between mx-auto">
         <a href="/" class="flex items-center">
-          <IoIosAlbums className="text-blue-600 text-3xl"></IoIosAlbums>
-          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+        <img src="/logo.png" alt="img" />
+          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white pl-2">
             Poet Prime
           </span>
         </a>
@@ -82,6 +82,7 @@ function Navbar() {
                 </a>
               </Link>
             </li>
+            {AuthServices.isLoggedIn && AuthServices.getLoggedInUser() ? (
             <li>
               <Link to="/poets">
                 <a
@@ -91,7 +92,7 @@ function Navbar() {
                   Poets
                 </a>
               </Link>
-            </li>
+            </li>):<></>}
             <li>
               <Link to="/poetries">
                 <a

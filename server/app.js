@@ -23,9 +23,7 @@ const passwordResetRoutes = require("./routes/api/PasswordReset")
 const { Server } = require("socket.io");
 var app = express();
 app.use(cors({ origin: true, credentials: true }));
-
 var server = http.createServer(app);
-
 var port = "3000";
 /**
  * Create HTTP server.
@@ -45,7 +43,25 @@ dotenv.config();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
-
+app.use(passport.initialize());
+passport.use(
+  "google",
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "http://localhost:4000/api/auth/google/callback",
+      passReqToCallback: true,
+    },
+    (request, accessToken, refreshToken, profile, done) => {
+      try {
+        done(false, profile);
+      } catch (err) {
+        done(err, false);
+      }
+    }
+  )
+);
 app.use(logger("dev"));
 app.use("/api/checkout/webhook", express.raw({ type: "*/*" }));
 app.use(express.urlencoded({ extended: false }));

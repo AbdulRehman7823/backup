@@ -15,7 +15,10 @@ const googleAuth = async (req, res, next) =>
     console.log("from promise", req.query);
     passport.authenticate(
       "google",
+      
       {
+        successRedirect:"http://localhost:3000/",
+        failureRedirect:"http://localhost:3000/",
         scope: ["email", "profile"],
         session: false,
       },

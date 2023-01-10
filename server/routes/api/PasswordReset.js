@@ -4,10 +4,11 @@ const User = require("../../models/User");
 const Token = require("../../models/token");
 const sendEmail = require("../../utils/sendEmail");
 const crypto = require("crypto");
-const bcrypt = require("bcrypt");
+const CryptoJS = require("crypto-js");
 const Joi = require("joi")
-const passwordComplexity = require('joi-password-complexity');
 
+
+//send email for reset password
 router.post('/',async(req, res)=>{
     try {
         const emailSchema = Joi.object({
@@ -57,15 +58,16 @@ router.get('/:id/:token',async (req, res) =>{
     }
 })
 
-
+//reset password
 router.post('/:id/:token',async (req, res) => {
     try{
-         const passwordSchema = Joi.object({
-            password:passwordComplexity().require().label("Password")
-         });
-         const {error} = passwordSchema.validate(req.body);
-        if(error) 
-            return res.status(400).send({message:error.details[0].message});
+        console.log(req.body.password);
+         const password  = req.body.password;
+         if(!password)
+         return res.status(400).send({message:"Please Provide a password"});
+         if(password.length <8)
+         return res.status(400).send({message:"Invalid password lenght must be 8"});
+         
         
             const user  = await User.findOne({_id:req.params.id});
             if(!user)
@@ -77,16 +79,22 @@ router.post('/:id/:token',async (req, res) => {
     
             if(!user.verified)
             user.verified = true;
-            const salt = await bcrypt.getSalt(Number(process.env.SALT));
-            const hashPassword = await bcrypt.hash(req.body.password,salt)
+            
+            const hashPassword =  CryptoJS.AES.encrypt(
+                req.body.password,
+                process.env.PASS_SEC
+              ).toString()
 
             user.password = hashPassword;
             await user.save();
             await token.remove();
 
+            console.log(user);
             res.status(200).send({message:"Password Reset Successfully"})
         }catch(error) {
-
+            console.log(error);
+            res.status(500).send({message:"Internal Server Error"});
+            
     }
 })
 

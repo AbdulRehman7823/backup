@@ -8,8 +8,10 @@
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "axios": "^0.27.2",
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.0",
     "cookie-parser": "~1.4.4",
+    "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "crypto-js": "^4.1.1",
@@ -27,6 +29,7 @@
     "nodemon": "^2.0.15",
     "passport": "^0.6.0",
     "passport-google-oauth2": "^0.2.0",
+    "passport-google-oauth20": "^2.0.0",
     "react-transliterate": "^1.1.9",
     "socket.io": "^4.5.0",
     "stripe": "^8.219.0"
