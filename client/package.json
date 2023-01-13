@@ -19,6 +19,7 @@
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.4.4",
     "react-scripts": "5.0.1",
+    "react-scroll-to-bottom": "^4.2.0",
     "react-search-autocomplete": "^8.2.1",
     "react-spinners": "^0.13.7",
     "react-stripe-checkout": "^2.6.3",

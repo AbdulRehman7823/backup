@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import axios from "axios";
 
-function ReaderChatView({ socket, username, room }) {
+function PoetChatView({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
@@ -100,4 +100,4 @@ function ReaderChatView({ socket, username, room }) {
   );
 }
 
-export default ReaderChatView;
+export default PoetChatView;

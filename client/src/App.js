@@ -15,32 +15,16 @@ import "react-toastify/dist/ReactToastify.css";
 import PoetryList from "./components/Poetries/PoetryList";
 import PoetPoetryList from "./components/PoetCard/PoetPoetryList";
 import BuySubscription from "./components/PoetCard/BuySubscription";
-import Navbar from './components/FrontPageComponents/Navbar/Navbar'
-import Footer from './components/FrontPageComponents/Footer/Footer';
+import Navbar from "./components/FrontPageComponents/Navbar/Navbar";
 import SellerProfilePage from "./components/Pages/SellerPages/SellerProfilePage";
-import EmailVerify from './components/EmailVerify';
-import ForgotPassword from './components/ForgotPassword';
-import PasswordReset from './components/PasswordReset';
-import Payment from './components/Payment/payment';
-import axios from 'axios';
+import EmailVerify from "./components/EmailVerify";
+import ForgotPassword from "./components/ForgotPassword";
+import PasswordReset from "./components/PasswordReset";
+import Payment from "./components/Payment/Payment";
+import ReaderChat from "./components/reader/ReaderChat";
+import PoetChat from "./components/sellerDashboard/seller/PoetChat";
+
 function App() {
-
-  const [user,setUser]= React.useState({});
-
-  const getUser = async()=>{
-  try {
-         const url = "http://localhost:4000/api/auth/login/success";
-         const {data} = await axios.get(url);
-         setUser(data.user);
-         alert(user.username);
-  } catch (error) {
-    
-  }
-  }
-
-  React.useEffect(()=>{
-    getUser();
-  },[]);
   return (
     <Router>
       <ToastContainer
@@ -59,6 +43,8 @@ function App() {
           }
         />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/reader/chat" element={<ReaderChat />} />
         <Route path="/password-reset/:id/:token" element={<PasswordReset />} />
         <Route
           path="/"
@@ -82,6 +68,7 @@ function App() {
         />
         <Route path="/app/seller/home" element={<SellerHomePage />} />
         <Route path="/app/seller/add" element={<SellerAddComponentPage />} />
+        <Route path="/app/seller/chat" element={<PoetChat />} />
         <Route
           path="/app/seller/delete"
           element={<SellerDeleteComponentPage />}
@@ -93,12 +80,45 @@ function App() {
         />
         <Route path="/app/seller/profile" element={<SellerProfilePage />} />
 
-        <Route path="/poets" element={<><Navbar/><PoetCardList /></>} />
-        <Route path="/poetries" element={<><Navbar/><PoetryList /></>} />
-        <Route path="/poet/poetries" element={<><Navbar/><PoetPoetryList /></>} />
-        <Route path="/poet/buysubscription" element={<><Navbar/><BuySubscription /></>} />
+        <Route
+          path="/poets"
+          element={
+            <>
+              <Navbar />
+              <PoetCardList />
+            </>
+          }
+        />
+        <Route
+          path="/poetries"
+          element={
+            <>
+              <Navbar />
+              <PoetryList />
+            </>
+          }
+        />
+        <Route
+          path="/poet/poetries"
+          element={
+            <>
+              <Navbar />
+              <PoetPoetryList />
+            </>
+          }
+        />
+
+        <Route
+          path="/poet/buysubscription"
+          element={
+            <>
+              <Navbar />
+              <BuySubscription />
+            </>
+          }
+        />
       </Routes>
     </Router>
   );
-}}
+}
 export default App;

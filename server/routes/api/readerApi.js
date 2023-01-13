@@ -40,20 +40,8 @@ router.get("/:id", verifyToken, async (req, res) => {
 
 router.post("/request/poet/:id", verifyToken, async (req, res) => {
   try {
-    let reader = await User.findById(req.params.id, {
-      _id: 1,
-      username: 1,
-      email: 1,
-      poets: 1,
-      img: 1,
-    });
-    let poet = await User.findById(req.body.poetId, {
-      _id: 1,
-      username: 1,
-      email: 1,
-      poetCustomers: 1,
-      img: 1,
-    });
+    let reader = await User.findById(req.params.id);
+    let poet = await User.findById(req.body.poetId);
     if (reader && poet) {
       var check = 0;
       await reader.poets.forEach((value, index) => {

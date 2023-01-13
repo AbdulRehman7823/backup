@@ -114,7 +114,7 @@ function SignUp() {
           style={{ textAlign: "center" }}
           className="main-bg flex justify-center w-full bg-gray-300 h-screen mx-auto py-32"
         >
-           <ScaleLoader color="#3d49fc" size="150"  />
+          <ScaleLoader color="#3d49fc" size="150" />
         </div>
       ) : (
         <section className="main-bg px-64 py-4  flex justify-center  h-screen items-center">
@@ -182,11 +182,10 @@ function SignUp() {
                     </label>
                     <select
                       id="userType"
-                      className="form-control dropdownMenu"
+                      className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
                       onChange={(e) => {
                         handleData("userType", e.target.value);
                       }}
-                      
                       required
                     >
                       <option value="reader">Reader</option>
@@ -227,7 +226,7 @@ function SignUp() {
                     Sign In
                   </button>
                   {error && <div className="error_msg">{error}</div>}
-					{msg && <div className="success_msg">{msg}</div>}
+                  {msg && <div className="success_msg">{msg}</div>}
                 </div>
                 <div></div>
                 <div className="flex flex-col justify-around">
@@ -282,20 +281,18 @@ function SignUp() {
                       />
                     )}
                   </div>
-                 
                 </div>
-                
               </form>
-             
+
               <a
-            href="http://localhost:4000/api/auth/google/callback"
-            className="w-full block border text-center bg-gray-200 hover:bg-gray-300 focus:bg-blue-400  font-semibold rounded-lg
+                href="http://localhost:4000/api/auth/google/callback"
+                className="w-full block border text-center bg-gray-200 hover:bg-gray-300 focus:bg-blue-400  font-semibold rounded-lg
                 px-4 py-2 mt-6"
-          >
-            <FcGoogle size={30} className="inline" />
-            <span> Sign In with google</span>
-          </a>
-         
+              >
+                <FcGoogle size={30} className="inline" />
+                <span> Sign In with google</span>
+              </a>
+
               <hr className="border-gray-300 w-full mt-4" />
 
               <p className="mt-2">
