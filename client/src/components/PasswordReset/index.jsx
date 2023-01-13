@@ -1,7 +1,7 @@
 import { useEffect, useState, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import styles from "./styles.module.css";
+import  "./styles.css";
 import ScaleLoader from "react-spinners/ScaleLoader";
 
 
@@ -51,9 +51,9 @@ const PasswordReset = () => {
 		<Fragment>
 			{validUrl ? (
 				
-				<div className={styles.container}>
+				<div className={"resetContainer"}>
 					{!loading?
-					<form className={styles.form_container} onSubmit={handleSubmit}>
+					<form className={"form_resetContainer"} onSubmit={handleSubmit}>
 						<h1>Add New Password</h1>
 						<input
 							type="password"
@@ -62,17 +62,17 @@ const PasswordReset = () => {
 							onChange={(e) => setPassword(e.target.value)}
 							value={password}
 							required
-							className={styles.input}
+							className={"input"}
 						/>
-						{error && <div className={styles.error_msg}>{error}</div>}
-						{msg && <div className={styles.success_msg}>{msg}</div>}
-						<button disabled={loading} type="submit" className={styles.green_btn}>
+						{error && <div className={"error_msg"}>{error}</div>}
+						{msg && <div className={"success_msg"}>{msg}</div>}
+						<button disabled={loading} type="submit" className={"green_btn"}>
 							Submit
 						</button>
 					</form>:  <ScaleLoader color="#3d49fc" size="150"  />}
 				</div>
 			) : (
-				<div className={styles.container}>
+				<div className={"resetContainer"}>
 				<h1 className="text-red-400 text-xl font-bold items-center">404 Not Found</h1>
 				</div>
 			)}
