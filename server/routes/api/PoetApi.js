@@ -92,7 +92,7 @@ router.post("/accept/:id", verifyToken, async (req, res) => {
   }
 });
 
-router.get("/:id", verifyToken, async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const poet = await User.findById(req.params.id);
     if (poet) {
@@ -130,12 +130,15 @@ router.put("/:id", async (req, res) => {
 router.get("/poetries/:id",async(req, res)=>{
     const poetId = req.params.id;
     const poetries = await Product.find({poetId: poetId});
-  
-    if(poetries.length>0) {
-         res.status(200).send(poetries);
-    }else{
-      res.status(422).send({ message: "There  is no poetry with this Poet" });
-    }
+    if(!poetries)
+    return res.status(422).send({message:"Invalid Poet ID"});
+
+    if(poetries.length<=0) 
+    return res.status(200).send([]);
+        
+    
+    return res.status(200).send(poetries);
+    
 })
 
 

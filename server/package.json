@@ -28,7 +28,7 @@
     "nodemailer": "^6.8.0",
     "nodemon": "^2.0.15",
     "passport": "^0.6.0",
-    "passport-google-oauth2": "^0.2.0",
+    "passport-google-oauth": "^2.0.0",
     "passport-google-oauth20": "^2.0.0",
     "react-transliterate": "^1.1.9",
     "socket.io": "^4.5.0",

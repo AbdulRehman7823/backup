@@ -9,14 +9,16 @@ const PoetPoetryList = () => {
   const location = useLocation();
   const [loading, setLoading] = React.useState(false);
   const [poetId, setPoetId] = useState(location.state.poetId);
-  const navigation = useNavigate();
+  const [poet, setPoet] = useState({});
+  const navigate = useNavigate();
   const [poetries, setPoetries] = React.useState([]);
   useEffect(() => {
     getData();
+
+    getPoet();
   }, [poetId]);
   function getData() {
     setLoading(true);
-
     poetServices
       .getAllPoetries(poetId._id)
       .then((data) => {
@@ -29,6 +31,13 @@ const PoetPoetryList = () => {
         setLoading(false);
       });
   }
+
+  const getPoet = () => {
+    poetServices.getPoet(poetId._id).then((response) => {
+      console.log(response);
+      setPoet(response);
+    });
+  };
 
   const handleOnSearch = (string, results) => {
     console.log(string, results);
@@ -49,15 +58,21 @@ const PoetPoetryList = () => {
       </>
     );
   };
-  const handleSubscription = () => {
-    navigation("/poet/buysubscription", { state: { poet: poetId } });
+  const handleSubscription = (e) => {
+    e.preventDefault();
+    console.log("clck")
+    let fee = poet.subscriptionfee?poet.subscriptionfee:5;
+    if (fee == 0) {
+      fee = 5;
+    }
+    navigate("/payment", {
+      state: { amount: fee, poetId: poet._id },
+    });
   };
   return (
     <section class="text-gray-600 body-font">
       <div class="container px-5 py-24 mx-auto">
         <div className="flex flex-wrap justify-center md:justify-between m-6">
-        
-
           <div>
             <div className="">
               <div style={{ width: 300 }}>
@@ -99,13 +114,13 @@ const PoetPoetryList = () => {
         ) : (
           <div class="flex bg-gray-100 py-8 px-4 flex-wrap justify-between flex-row">
             {poetries.map((poetry, index) => (
-                <PoetryCard key={index} poetry={poetry}></PoetryCard>
+              <PoetryCard key={index} poetry={poetry}></PoetryCard>
             ))}
           </div>
         )}
         <div className="flex justify-center my-10">
           <button
-            onClick={handleSubscription}
+            onClick={(e)=>handleSubscription(e)}
             type="button"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
           >

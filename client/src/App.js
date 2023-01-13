@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import FrontPage from './components/Pages/FrontPage'
 import LoginPage from './components/Pages/LoginPage';
@@ -21,8 +21,26 @@ import SellerProfilePage from "./components/Pages/SellerPages/SellerProfilePage"
 import EmailVerify from './components/EmailVerify';
 import ForgotPassword from './components/ForgotPassword';
 import PasswordReset from './components/PasswordReset';
+import Payment from './components/Payment/payment';
 import axios from 'axios';
 function App() {
+
+  const [user,setUser]= React.useState({});
+
+  const getUser = async()=>{
+  try {
+         const url = "http://localhost:4000/api/auth/login/success";
+         const {data} = await axios.get(url);
+         setUser(data.user);
+         alert(user.username);
+  } catch (error) {
+    
+  }
+  }
+
+  React.useEffect(()=>{
+    getUser();
+  },[]);
   return (
     <Router>
       <ToastContainer
@@ -75,44 +93,12 @@ function App() {
         />
         <Route path="/app/seller/profile" element={<SellerProfilePage />} />
 
-        <Route
-          path="/poets"
-          element={
-            <>
-              <Navbar />
-              <PoetCardList />
-            </>
-          }
-        />
-        <Route
-          path="/poetries"
-          element={
-            <>
-              <Navbar />
-              <PoetryList />
-            </>
-          }
-        />
-        <Route
-          path="/poet/poetries"
-          element={
-            <>
-              <Navbar />
-              <PoetPoetryList />
-            </>
-          }
-        />
-        <Route
-          path="/poet/buysubscription"
-          element={
-            <>
-              <Navbar />
-              <BuySubscription />
-            </>
-          }
-        />
+        <Route path="/poets" element={<><Navbar/><PoetCardList /></>} />
+        <Route path="/poetries" element={<><Navbar/><PoetryList /></>} />
+        <Route path="/poet/poetries" element={<><Navbar/><PoetPoetryList /></>} />
+        <Route path="/poet/buysubscription" element={<><Navbar/><BuySubscription /></>} />
       </Routes>
     </Router>
   );
-}
-export default App
+}}
+export default App;
