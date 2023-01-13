@@ -37,7 +37,7 @@ const userSchema = mongoose.Schema(
         readerId: { type: String },
       },
     ],
-    subscriptionfee: { type: Number },
+    subscriptionfee: { type: Number ,default:5},
   },
   { timestamps: true }
 );

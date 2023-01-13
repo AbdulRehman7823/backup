@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import styles from "./styles.module.css";
+import  "./styles.css"
 import ScaleLoader from "react-spinners/ScaleLoader";
 
 const ForgotPassword = () => {
@@ -32,9 +32,9 @@ const ForgotPassword = () => {
 	};
 
 	return (
-		<div className={styles.container}>
+		<div className={"forgotContainer"}>
           {!loading?
-			<form className={styles.form_container} onSubmit={handleSubmit}>
+			<form className={"form_forgotContainer"} onSubmit={handleSubmit}>
 				<h1>Forgot Password</h1>
 				<input
 					type="email"
@@ -43,11 +43,11 @@ const ForgotPassword = () => {
 					onChange={(e) => setEmail(e.target.value)}
 					value={email}
 					required
-					className={styles.input}
+					className={"input"}
 				/>
-				{error && <div className={styles.error_msg}>{error}</div>}
-				{msg && <div className={styles.success_msg}>{msg}</div>}
-				<button disabled={loading} type="submit" className={styles.green_btn}>
+				{error && <div className={"error_msg"}>{error}</div>}
+				{msg && <div className={"success_msg"}>{msg}</div>}
+				<button disabled={loading} type="submit" className={"green_btn"}>
 					Submit
 				</button>
 			</form>:  <ScaleLoader color="#3d49fc" size="150"  />}

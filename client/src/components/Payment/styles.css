@@ -1,4 +1,4 @@
-.container {
+.paymentContainer {
 	width: 100vw;
 	height: 100vh;
 	display: flex;
@@ -6,7 +6,7 @@
 	justify-content: center;
 }
 
-.form_container {
+.form_paymentContainer {
 	width: 400px;
 	padding: 10px;
 	background-color: white;

@@ -85,6 +85,29 @@ router.post("/login", async (req, res) => {
   }
 });
 
+
+/* GET Google Authentication API. */
+router.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+router.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "http://localhost:3000/", session: false }),
+  function(req, res) {
+    console.log("----------------------------------------------------");
+    console.log(req.user);
+    console.log("----------------------------------------------------");
+
+
+   var token = req.user.token;
+
+      res.redirect("http://localhost:3000?token=" + token);
+  }
+);
+
+
+/*
 router.get('/login/success',async(req, res)=>{
   console.log("From google");
   console.log(req.body);
@@ -97,7 +120,7 @@ router.get("/googleAuth", googleAuth);
 router.get("/google/callback/", googleAuth, async (req, res) => {
   
   const googleUser = { email: req.user.email, username: req.user.displayName, verified: req.verified,img:req.picture,password:"google",userType:"reader"};
-  /*
+  
   let user = await User.findOne({ email: googleUser.email });
   if(!user){
     const sgUser = await new User(googleUser).save();
@@ -120,12 +143,12 @@ router.get("/google/callback/", googleAuth, async (req, res) => {
     };
     const accessToken = jwt.sign(signedUser, process.env.SECRET_TOKEN);
     res.status(200).json({ accessToken: accessToken });
-  }*/
+  }
   res.redirect("http://localhost:3000/");
 })
   
 
-/*
+
  router.get("/login/success",(req,res)=>{
   console.log("access;;;;;;;;;;;;;")
    try {
