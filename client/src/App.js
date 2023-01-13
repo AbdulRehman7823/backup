@@ -23,23 +23,6 @@ import ForgotPassword from './components/ForgotPassword';
 import PasswordReset from './components/PasswordReset';
 import axios from 'axios';
 function App() {
-
-  const [user,setUser]= React.useState({});
-
-  const getUser = async()=>{
-  try {
-         const url = "http://localhost:4000/api/auth/login/success";
-         const {data} = await axios.get(url);
-         setUser(data.user);
-         alert(user.username);
-  } catch (error) {
-    
-  }
-  }
-
-  React.useEffect(()=>{
-    getUser();
-  },[]);
   return (
     <Router>
       <ToastContainer
@@ -48,13 +31,37 @@ function App() {
         pauseOnFocusLoss={false}
       />
       <Routes>
-      <Route path="/users/:id/verify/:token" element={<><Navbar/><EmailVerify /></>} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
-			<Route path="/password-reset/:id/:token" element={<PasswordReset />} />
-        <Route path="/" element={<><Navbar/><FrontPage></FrontPage></>} />
+        <Route
+          path="/users/:id/verify/:token"
+          element={
+            <>
+              <Navbar />
+              <EmailVerify />
+            </>
+          }
+        />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/password-reset/:id/:token" element={<PasswordReset />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <Navbar />
+              <FrontPage></FrontPage>
+            </>
+          }
+        />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<SignupPage></SignupPage>} />
-        <Route path="/contactus" element={<><Navbar/><ContactPage /></>} />
+        <Route
+          path="/contactus"
+          element={
+            <>
+              <Navbar />
+              <ContactPage />
+            </>
+          }
+        />
         <Route path="/app/seller/home" element={<SellerHomePage />} />
         <Route path="/app/seller/add" element={<SellerAddComponentPage />} />
         <Route
@@ -68,12 +75,43 @@ function App() {
         />
         <Route path="/app/seller/profile" element={<SellerProfilePage />} />
 
-        <Route path="/poets" element={<><Navbar/><PoetCardList /></>} />
-        <Route path="/poetries" element={<><Navbar/><PoetryList /></>} />
-        <Route path="/poet/poetries" element={<><Navbar/><PoetPoetryList /></>} />
-        <Route path="/poet/buysubscription" element={<><Navbar/><BuySubscription /></>} />
+        <Route
+          path="/poets"
+          element={
+            <>
+              <Navbar />
+              <PoetCardList />
+            </>
+          }
+        />
+        <Route
+          path="/poetries"
+          element={
+            <>
+              <Navbar />
+              <PoetryList />
+            </>
+          }
+        />
+        <Route
+          path="/poet/poetries"
+          element={
+            <>
+              <Navbar />
+              <PoetPoetryList />
+            </>
+          }
+        />
+        <Route
+          path="/poet/buysubscription"
+          element={
+            <>
+              <Navbar />
+              <BuySubscription />
+            </>
+          }
+        />
       </Routes>
-     
     </Router>
   );
 }

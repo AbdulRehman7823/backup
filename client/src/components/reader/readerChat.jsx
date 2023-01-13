@@ -2,7 +2,7 @@
 import React from "react";
 import "../doctor/chatStyle.css";
 import { useState,useEffect } from "react";
-import ChatView from "./PatientChatView";
+import ChatView from "./ReaderChatView";
 import {useLocation} from 'react-router-dom';
 import authServices from "../Services/AuthServices";
 
