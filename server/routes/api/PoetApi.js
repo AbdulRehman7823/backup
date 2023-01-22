@@ -31,13 +31,14 @@ router.get("/readers/:id", async (req, res) => {
     const poet = await User.findById(req.params.id);
     if (poet && poet.userType == "poet") {
       console.log(poet);
-      const readers = poet.poetAccepts;
-      console.log(readers);
+      const readers = poet.poetCustomers;
+      console.log("dddddd", readers);
       if (readers.length > 0) {
-        const records = await User.find().where("_id").in(readers).exec();
-        console.log(records);
-        res.status(200).send(records);
+        // const records = await User.find().where("_id").in(readers).exec();
+        // console.log(records);
+        res.status(200).send(readers);
       } else {
+        console.log("sdfsd");
         res.status(200).send([]);
       }
     } else {

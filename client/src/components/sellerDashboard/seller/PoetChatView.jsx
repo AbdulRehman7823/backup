@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import axios from "axios";
 
-function ChatView({ socket, username, room }) {
+function PoetChatView({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
@@ -20,10 +20,7 @@ function ChatView({ socket, username, room }) {
 
       await socket.emit("send_message", messageData);
       await axios
-        .post(
-          "https://ar-medicare-backend.herokuapp.com/api/chat/userChat/" + room,
-          messageData
-        )
+        .post("http://localhost:4000/api/chat/userChat/" + room, messageData)
         .then((res) => {
           console.log(res);
         })
@@ -37,9 +34,7 @@ function ChatView({ socket, username, room }) {
 
   const getChatHistory = () => {
     axios
-      .get(
-        "https://ar-medicare-backend.herokuapp.com/api/chat/userChat/" + room
-      )
+      .get("http://localhost:4000/api/chat/userChat/" + room)
       .then((response) => {
         console.log(response);
         setMessageList(response.data);
@@ -105,4 +100,4 @@ function ChatView({ socket, username, room }) {
   );
 }
 
-export default ChatView;
+export default PoetChatView;

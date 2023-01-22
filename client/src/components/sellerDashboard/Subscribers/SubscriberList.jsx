@@ -13,6 +13,7 @@ function SubscriberList() {
         if (data) {
           setSubscribers(data);
         }
+        console.log(data);
       })
       .catch((err) => {
         alert.showErrorAlert(err.message);
